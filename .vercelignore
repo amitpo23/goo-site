@@ -1,0 +1,9 @@
+.git
+node_modules
+.next
+out
+research
+shots
+BRIEF.md
+REPORT.md
+*.log
