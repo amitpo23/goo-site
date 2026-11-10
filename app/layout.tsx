@@ -8,4 +8,4 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', images: ['/og.png'] },
   robots: {index: false, follow: false},
 };
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="he" dir="rtl"><body>{children}</body></html>; }
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="he" dir="rtl"><head><link rel="preload" href="/fonts/heebo-bold.woff" as="font" type="font/woff" crossOrigin="anonymous"/><link rel="preload" href="/fonts/heebo-regular.woff" as="font" type="font/woff" crossOrigin="anonymous"/></head><body>{children}</body></html>; }

@@ -42,4 +42,6 @@ Do not use `--prod`. Deployment was attempted and failed because credentials wer
 
 GitHub repository creation and push require authenticated access. The requested private repository could not be created in this session. Source is committed locally; the configured remote is the intended destination, not confirmation that it exists.
 
+Validation: production build passed; Playwright verified desktop/mobile overflow, project details and contact navigation with no JavaScript errors. Lighthouse mobile on a gzip-enabled local static server: performance 95, accessibility 100, best practices 100; SEO 60 from intentional preview noindex.
+
 See [REPORT.md](REPORT.md) for review items and [screenshots](shots/).

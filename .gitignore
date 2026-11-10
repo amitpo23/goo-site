@@ -8,3 +8,7 @@ research/
 BRIEF.md
 .DS_Store
 *.tsbuildinfo
+
+shots/*
+!shots/desktop.png
+!shots/mobile.png
