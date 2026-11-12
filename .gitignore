@@ -4,6 +4,7 @@ out/
 .vercel/
 .env*
 *.log
+codex.log
 research/
 BRIEF.md
 .DS_Store
