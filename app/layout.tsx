@@ -7,7 +7,7 @@ import './globals.css';
 
 const title = 'GOO | לוקחים עסקים לגובה חדש';
 const description =
-  'GOO בונה ומצמיחה עסקים: מיזמים שאנחנו יוזמים ומפתחים בעצמנו, ועסקים קיימים שאנחנו מלווים אל השלב הבא.';
+  'GOO היא venture studio: יוזמים, בונים ומפעילים עסקים משלנו, ומלווים עסקים קיימים אל השלב הבא.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(

@@ -104,8 +104,8 @@ export default function Home() {
               לגובה חדש.
             </h1>
             <p className="lede">
-              GOO בונה ומצמיחה עסקים. חלקם מיזמים שאנחנו יוזמים ומפתחים בעצמנו,
-              וחלקם עסקים קיימים שאנחנו מלווים מהמקום שבו הם נמצאים אל השלב הבא.
+              GOO היא venture studio. אנחנו יזמים: יוזמים, בונים ומפעילים עסקים משלנו, ומביאים את
+              אותו ניסיון לעסקים קיימים שאנחנו מלווים אל השלב הבא.
             </p>
             <div className="actions">
               <a className="btn btn-cobalt" href="#contact">
@@ -247,7 +247,7 @@ export default function Home() {
         </section>
 
         <section className="team wrap" id="team">
-          <h2>מי מאחורי GOO</h2>
+          <h2>היזמים מאחורי GOO</h2>
           <ul>
             {founders.map((f) => (
               <li key={f.name}>
@@ -296,7 +296,7 @@ export default function Home() {
 
       <footer className="wrap site-footer">
         <Logo />
-        <p>בונים ומצמיחים עסקים.</p>
+        <p>Venture studio. יוזמים, בונים ומצמיחים עסקים.</p>
         <p className="copy">© 2026 GOO</p>
       </footer>
     </>
