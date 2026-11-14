@@ -342,11 +342,24 @@ a:focus-visible {
 
 /* מחלקות */
 
-.depts {
+.approach {
   padding-block: var(--gap);
 }
 
-.depts .section-head p {
+.approach h2 {
+  font-size: clamp(44px, 7vw, 104px);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.approach-lede {
+  margin-top: 32px;
+  max-width: 34em;
+  font-size: clamp(18px, 1.6vw, 21px);
+  color: var(--ink-soft);
+}
+
+.how .section-head p {
   color: var(--ink-soft);
 }
 
@@ -539,7 +552,7 @@ a:focus-visible {
 /* ליווי עסקים */
 
 .partners {
-  padding-block: var(--gap);
+  padding-block: 0 var(--gap);
   display: grid;
   grid-template-columns: 5fr 7fr;
   gap: 72px;

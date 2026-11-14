@@ -1,14 +1,5 @@
 import Contours, { type Peak } from "../components/Contours";
-import {
-  capabilities,
-  clients,
-  contact,
-  departments,
-  teamModes,
-  founders,
-  steps,
-  ventures,
-} from "../content/site";
+import { bring, clients, contact, entries, founders, steps, ventures } from '../content/site';
 
 // הפסגות במפה שבפתיח. x,y ביחידות של המפה (1200 על 900).
 const heroPeaks: (Peak & { label: string; href: string })[] = [
@@ -67,9 +58,9 @@ export default function Home() {
             <Logo />
           </a>
           <nav aria-label="ניווט ראשי">
-            <a href="#ventures">המיזמים</a>
-            <a href="#departments">המחלקות</a>
+            <a href="#approach">הגישה</a>
             <a href="#how">איך עובדים</a>
+            <a href="#ventures">המיזמים</a>
             <a href="#team">מי אנחנו</a>
           </nav>
           <a className="btn btn-ink btn-small" href="#contact">
@@ -106,31 +97,32 @@ export default function Home() {
               לגובה חדש.
             </h1>
             <p className="lede">
-              GOO היא venture studio. אנחנו לוקחים מיזם או עסק ומובילים אותו
-              מההתחלה ועד הסוף: יוזמים, מפתחים ומפעילים, עם הצוות שכבר קיים או
-              עם צוות שאנחנו בונים.
+              GOO היא חברת השבחה לעסקים קטנים. אנחנו נכנסים לעסקים בקשיים או עם פוטנציאל גדול, לצד
+              אנשים שאנחנו מאמינים בהם, ומובילים אותם יחד עם ההנהלה אל היעדים.
             </p>
             <div className="actions">
               <a className="btn btn-cobalt" href="#contact">
                 דברו איתנו
               </a>
-              <a className="btn btn-line" href="#ventures">
-                המיזמים שלנו
+              <a className="btn btn-line" href="#approach">
+                הגישה שלנו
               </a>
             </div>
           </div>
         </section>
 
-        <section className="depts wrap" id="departments">
-          <div className="section-head">
-            <h2>הכול בבית אחד.</h2>
-            <p>
-              כדי להוביל מיזם מקצה לקצה צריך יותר מקוד. לכן GOO בנויה ממחלקות
-              שעובדות יחד על אותו מיזם.
-            </p>
-          </div>
+        <section className="approach wrap" id="approach">
+          <h2>
+            לא יועצים מהצד.
+            <br />
+            מתחת לאלונקה.
+          </h2>
+          <p className="approach-lede">
+            אנחנו לא כותבים המלצות והולכים. אנחנו נכנסים לעסק, לוקחים אחריות יחד עם ההנהלה, ומייצרים
+            את התוצאות בעצמנו. בשביל זה אנחנו מביאים שלושה דברים.
+          </p>
           <ul className="depts-grid">
-            {departments.map((d) => (
+            {bring.map((d) => (
               <li key={d.name}>
                 <h3>{d.name}</h3>
                 <p>{d.text}</p>
@@ -139,10 +131,72 @@ export default function Home() {
           </ul>
         </section>
 
+        <section className="partners wrap" id="where">
+          <div className="partners-intro">
+            <h2>
+              לאן אנחנו
+              <br />
+              נכנסים.
+            </h2>
+            <p>
+              בעסקים של אחרים אנחנו נכנסים יחד עם הבעלים. את המיזמים שלנו אנחנו מקימים מאפס. התנאי
+              זהה בשני המקרים: אנשים שאנחנו מאמינים בהם.
+            </p>
+          </div>
+          <dl className="caps">
+            {entries.map((c) => (
+              <div key={c.title}>
+                <dt>{c.title}</dt>
+                <dd>{c.text}</dd>
+              </div>
+            ))}
+          </dl>
+
+          {clients.length > 0 && (
+            <div className="clients">
+              <h3>עסקים שאנחנו מובילים</h3>
+              <ul>
+                {clients.map((c) => {
+                  const inner = c.logo ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={c.logo} alt={c.name} loading="lazy" />
+                  ) : (
+                    <span>{c.name}</span>
+                  );
+                  return <li key={c.name}>{c.url ? <a href={c.url}>{inner}</a> : inner}</li>;
+                })}
+              </ul>
+            </div>
+          )}
+        </section>
+
+        <section className="how" id="how">
+          <div className="wrap">
+            <div className="section-head">
+              <h2>הרבה צעדים קטנים.</h2>
+              <p>
+                מכאן השם. עסק לא משתנה במהלך אחד גדול. הוא משתנה כשיודעים לאן הולכים, ועושים כל
+                יום צעד חכם אחד בכיוון.
+              </p>
+            </div>
+            <ol>
+              {steps.map((s, n) => (
+                <li key={s.title}>
+                  <span className="step-n" aria-hidden="true">
+                    {n + 1}
+                  </span>
+                  <h3>{s.title}</h3>
+                  <p>{s.text}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
         <section className="ventures" id="ventures">
           <div className="wrap">
             <div className="section-head">
-              <h2>המיזמים שלנו</h2>
+              <h2>מיזמים שיזמנו</h2>
               <p>
                 עסקים שיזמנו, בנינו ואנחנו מפעילים. כל אחד מהם התחיל מבעיה
                 שפגשנו בעצמנו.
@@ -184,72 +238,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="partners wrap" id="teams">
-          <div className="partners-intro">
-            <h2>
-              עם הצוות שלכם,
-              <br />
-              או עם צוות חדש.
-            </h2>
-            <ul className="modes">
-              {teamModes.map((m) => (
-                <li key={m.title}>
-                  <h3>{m.title}</h3>
-                  <p>{m.text}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <dl className="caps">
-            {capabilities.map((c) => (
-              <div key={c.title}>
-                <dt>{c.title}</dt>
-                <dd>{c.text}</dd>
-              </div>
-            ))}
-          </dl>
-
-          {clients.length > 0 && (
-            <div className="clients">
-              <h3>עובדים איתנו</h3>
-              <ul>
-                {clients.map((c) => {
-                  const inner = c.logo ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={c.logo} alt={c.name} loading="lazy" />
-                  ) : (
-                    <span>{c.name}</span>
-                  );
-                  return (
-                    <li key={c.name}>
-                      {c.url ? <a href={c.url}>{inner}</a> : inner}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          )}
-        </section>
-
-        <section className="how" id="how">
-          <div className="wrap">
-            <h2>מההתחלה ועד הסוף</h2>
-            <ol>
-              {steps.map((s, n) => (
-                <li key={s.title}>
-                  <span className="step-n" aria-hidden="true">
-                    {n + 1}
-                  </span>
-                  <h3>{s.title}</h3>
-                  <p>{s.text}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
         <section className="team wrap" id="team">
-          <h2>היזמים מאחורי GOO</h2>
+          <h2>מי מאחורי GOO</h2>
           <ul>
             {founders.map((f) => (
               <li key={f.name}>
@@ -265,11 +255,11 @@ export default function Home() {
           <Contours peaks={contactPeaks} levels={12} className="on-cobalt" />
           <div className="wrap contact-inner">
             <h2>
-              יש לכם עסק
+              יש לכם עסק שיכול
               <br />
-              או רעיון למיזם?
+              להגיע גבוה יותר?
             </h2>
-            <p>ספרו לנו מה אתם רוצים לבנות. נחזור אליכם עם הצעה איך לוקחים את זה מכאן ועד הסוף.</p>
+            <p>ספרו לנו איפה העסק היום ולאן אתם רוצים להגיע. נחזור אליכם לשיחה ראשונה.</p>
             {hasContact ? (
               <div className="actions">
                 {contact.whatsapp && (
@@ -295,7 +285,7 @@ export default function Home() {
 
       <footer className="wrap site-footer">
         <Logo />
-        <p>Venture studio. יוזמים, בונים ומצמיחים עסקים.</p>
+        <p>משביחים עסקים, צעד אחרי צעד.</p>
         <p className="copy">© 2026 GOO</p>
       </footer>
     </>
