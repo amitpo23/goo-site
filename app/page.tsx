@@ -1,28 +1,304 @@
-import { ArrowUpLeft, ArrowDown, Sparkles, Workflow, Code2, Globe2, ChartNoAxesCombined, Megaphone, Plus, Check, Mail, MessageCircle } from 'lucide-react';
-const Arrow = () => <ArrowUpLeft size={20} aria-hidden="true"/>;
-const projects = [
- {id:'rezef', name:'רצף / CFO', en:'FINANCE, CONNECTED.', category:'FINTECH', color:'lilac', title:'כל המספרים. תמונה אחת.', desc:'אנחנו בונים סביבת שליטה פיננסית שמחברת מסמכים, תנועות בנק ודוחות — כדי לראות מה קורה בעסק ולזהות את מה שחסר.', built:'מערכת בקרה, התאמות ותהליכי הכנה לאישור.', tech:'React · Python / FastAPI · PostgreSQL', status:'בפיתוח · יכולות פעילות וחלקיות', kind:'finance'},
- {id:'moshko', name:'מושקו', en:'JUST ASK MOSHKO.', category:'AI ASSISTANT', color:'lime', title:'שיחה פשוטה. עבודה מורכבת.', desc:'אנחנו מחברים עוזר AI לנתונים ולכלים של רצף: משאלות על העסק ועד הצעות לפעולה, עם אישור אנושי בשלבים הרגישים.', built:'כלים לשיחה, זיכרון ותשתית WhatsApp.', tech:'Python · LLM tools · Meta Cloud API', status:'ערוץ WhatsApp: טרם אומת מקצה לקצה', kind:'chat'},
- {id:'medici', name:'Medici', en:'TRAVEL, REWIRED.', category:'TRAVEL TECH', color:'peach', title:'מאחורי כל הזמנה, חיבור חכם.', desc:'אנחנו מחברים את עולם התיירות באמצעות תשתית B2B לספקים, השוואת מחירים ותהליכי הזמנה ורכש.', built:'תשתית API ותכנון זרימות עבודה מבוססות סוכנים.', tech:'B2B APIs · AI agents · Integrations', status:'מוכנות תפעולית עדכנית [לאשר]', kind:'travel'},
- {id:'marketing', name:'פיצה הכהן · Marketing OS', en:'GOOD TASTE. SMART SYSTEM.', category:'MARKETING TECH', color:'pink', title:'מקריאייטיב לתהליך שיווק שלם.', desc:'אנחנו מחברים אסטרטגיה, קופי, קריאייטיב ותכנון קמפיינים למערכת עבודה אחת — עם בריפים, אחריות ומדידה.', built:'מחקר, ספר מותג, נכסי קריאייטיב ותוכנית Google / Meta.', tech:'Google Ads · Meta Ads · Creative workflows', status:'מחקר וטיוטות · ללא טענת השקה', kind:'marketing'},
+import Contours, { type Peak } from "../components/Contours";
+import {
+  capabilities,
+  clients,
+  contact,
+  founders,
+  steps,
+  ventures,
+} from "../content/site";
+
+// הפסגות במפה שבפתיח. x,y ביחידות של המפה (1200 על 900).
+const heroPeaks: (Peak & { label: string; href: string })[] = [
+  { x: 330, y: 340, h: 1, r: 240, label: "Medici", href: "#medici" },
+  { x: 640, y: 640, h: 0.8, r: 190, label: "רצף", href: "#rezef" },
+  { x: 330, y: 750, h: 0.5, r: 130, label: "מושקו", href: "#moshko" },
+  {
+    x: 700,
+    y: 170,
+    h: 0.45,
+    r: 150,
+    label: "Marketing OS",
+    href: "#marketing-os",
+  },
 ];
-const services = [
- {icon:Workflow,n:'01',title:'סוכני AI ואוטומציה',text:'אנחנו מחברים נתונים, כלים ותהליכים לסוכנים שעושים עבודה מוגדרת, עם בקרה ברורה.'},
- {icon:Code2,n:'02',title:'מוצר, מהרעיון לקוד',text:'אנחנו מאפיינים, מעצבים ומפתחים מוצרים, מערכות עסקיות וחיבורים בין שירותים.'},
- {icon:Globe2,n:'03',title:'Travel-tech',text:'אנחנו מביאים הבנה עמוקה בתיירות, במערכות הזמנה ובחיבור לספקים.'},
- {icon:ChartNoAxesCombined,n:'04',title:'פיננסים שעובדים ביחד',text:'אנחנו בונים תהליכים לקליטת מסמכים, התאמות, תמונת מצב ובקרה פיננסית.'},
- {icon:Megaphone,n:'05',title:'שיווק עם מערכת מאחוריו',text:'אנחנו מתכננים תפעול Google ו־Meta, דפי נחיתה, קריאייטיב וזרימות מדידה.'},
+
+const cardPeaks: Peak[][] = [
+  [
+    { x: 250, y: 200, h: 1, r: 300 },
+    { x: 760, y: 420, h: 0.55, r: 220 },
+  ],
+  [
+    { x: 300, y: 260, h: 0.7, r: 240 },
+    { x: 620, y: 120, h: 1, r: 260 },
+  ],
 ];
-function Art({kind}:{kind:string}) {return <div className={`project-art ${kind}`} aria-hidden="true">{kind==='finance'?<><div className="mini-dashboard"><div className="dash-top"><span>REZEF / OVERVIEW</span><i/></div><div className="dash-label">התמונה העסקית שלכם</div><div className="chart">{[38,56,46,72,61,84,95].map((n,i)=><span key={i} style={{height:n+'%'}}/>)}</div><div className="dash-bottom"><span>מסמכים</span><span>תזרים</span><span>בקרה</span></div></div><div className="art-tag"><Check size={14}/> מחברים את הנקודות</div></>:kind==='chat'?<><div className="chat-orb">m<span>✳</span></div><div className="bubble b1">מושקו, מה דורש תשומת לב?</div><div className="bubble b2"><span className="tiny-dot"/> בואו נעשה סדר.</div><div className="bubble b3"><Check size={14}/> הנתונים. השיחה. ההחלטה שלכם.</div></>:kind==='travel'?<><div className="globe"><span/><span/><span/></div><div className="ticket"><span>MEDICI</span><Globe2 size={24}/><div>החיבור הבא שלכם</div><small>B2B → API → AI</small></div><div className="travel-orbit"/></>:<><div className="poster"><small>THE MARKETING MIX</small><b>רעיון.<br/>טעם.<br/>תנועה.</b><div className="poster-star">✳</div></div><div className="campaign"><Megaphone size={18}/><span>STRATEGY → CREATIVE → MEDIA</span></div></>}</div>}
-export default function Home(){return <>
-<a className="skip" href="#main">דילוג לתוכן</a>
-<header><a href="#" className="logo" aria-label="GOO — ראש העמוד" dir="ltr">goo<span>✳</span></a><nav aria-label="ניווט ראשי"><a href="#about">אנחנו</a><a href="#work">העבודות</a><a href="#capabilities">מה אנחנו עושים</a></nav><a className="nav-cta" href="#contact">בואו נזיז משהו <Arrow/></a></header>
-<main id="main"><section className="hero wrap"><div className="hero-copy"><div className="eyebrow"><span className="tiny-dot"/> GOO · עמית פורת & יובל רפאל</div><h1>רעיון טוב.<br/>ביצוע <span className="highlight">שעובד.<svg viewBox="0 0 350 22" preserveAspectRatio="none" aria-hidden="true"><path d="M5 15 Q160 -4 345 12"/></svg></span></h1><p>אנחנו מחברים אנשים, טכנולוגיה ועסקים.<br/>בונים מוצרים, מפעילים סוכני AI והופכים<br className="desktop-break"/> תהליכים מסורבלים למהלך הבא שלכם.</p><div className="hero-actions"><a className="button dark" href="#contact">בואו נדבר על מה שצריך <Arrow/></a><a className="text-link" href="#work">תראו מה אנחנו בונים <ArrowDown size={17}/></a></div><div className="hero-note">חשיבה עסקית. ידיים על המקלדת. אנשים בתמונה.</div></div>
-<div className="hero-art" aria-label="איור מקורי: חיבור בין אנשים, טכנולוגיה ורעיונות"><div className="art-grid"/><div className="orbit orbit-one"/><div className="orbit orbit-two"/><div className="goo-sculpture" dir="ltr"><div className="sculpt-g">g</div><div className="sculpt-o o-one"/><div className="sculpt-o o-two"/></div><div className="float-label label-ai"><Sparkles size={17}/> קצת AI. הרבה עשייה.</div><div className="float-label label-product"><span className="tiny-dot"/> מרעיון למציאות</div><div className="art-asterisk">✳</div><span className="art-caption" dir="ltr">GOOD PEOPLE. GREAT POSSIBILITIES.</span><div className="round-seal" dir="ltr">LET’S<br/><b>GOO ↗</b></div></div></section>
-<div className="ticker" aria-label="תחומי הפעילות"><div><span>AI AGENTS</span><i>✳</i><span>PRODUCT DEVELOPMENT</span><i>✳</i><span>TRAVEL TECH</span><i>✳</i><span>FINTECH</span><i>✳</i><span>MARKETING TECH</span><i>✳</i></div></div>
-<section id="about" className="about wrap section"><div className="section-top"><span className="eyebrow">01 / האנשים שמחברים</span><span className="small-en" dir="ltr">TWO MINDS. ONE FORWARD.</span></div><div className="about-layout"><h2>טכנולוגיה טובה<br/>מתחילה <span className="purple-text">באנשים.</span></h2><div><p className="large-copy">אנחנו, עמית ויובל. מחברים עומק טכנולוגי עם הבנה עסקית, סקרנות עם ניסיון, ורעיונות עם היכולת להוציא אותם לפועל.</p><p className="muted">אנחנו אוהבים להבין איך העסק באמת עובד. איפה דברים נתקעים, מה יכול לעבוד טוב יותר ואיך בונים פתרון שאנשים ירצו להשתמש בו.</p></div></div><div className="people"><article className="person"><div className="person-icon amit" aria-hidden="true">a<span>↗</span></div><div><h3>עמית פורת</h3><span className="role">מוצר · ארכיטקטורה · פיתוח</span><p>אנחנו מביאים כ־20 שנות ניסיון של עמית בפיתוח פרויקטי travel-tech, לצד בניית מוצרים מונעי סוכני AI.</p></div><span className="person-num">01</span></article><article className="person"><div className="person-icon yuval" aria-hidden="true">y<span>✳</span></div><div><h3>יובל רפאל</h3><span className="role">אנשים · מכירות · פיתוח עסקי</span><p>אנחנו מחברים את העומק הטכנולוגי עם ההובלה של יובל באנשים, במכירות ובפיתוח עסקי. <small className="approval">[לאשר: רקע יובל]</small></p></div><span className="person-num">02</span></article></div></section>
-<section id="work" className="work section"><div className="wrap"><div className="section-top"><span className="eyebrow">02 / דברים שאנחנו בונים</span><span className="small-en" dir="ltr">FROM THINKING TO MAKING.</span></div><div className="section-heading"><h2>הרבה עולמות.<br/><span className="purple-text">אותה גישה.</span></h2><p>אנחנו לוקחים בעיה אמיתית, מחברים את החלקים<br/>ובונים סביבה מוצר, תהליך וחוויית שימוש.</p></div><div className="project-grid">{projects.map((p,i)=><article key={p.id} className={`project ${p.color}`}><div className="project-top"><span>{p.category}</span><span>0{i+1} ↗</span></div><Art kind={p.kind}/><div className="project-content"><div className="project-name">{p.name}</div><h3>{p.title}</h3><p>{p.desc}</p><details><summary>מה בנינו, ומה בפנים <Plus size={17}/></summary><p>{p.built}</p><span className="tech" dir="ltr">{p.tech}</span></details><div className="project-status"><span className="tiny-dot"/>{p.status}</div></div></article>)}</div><div className="research-row"><span className="research-star" aria-hidden="true">✳</span><div><span className="eyebrow">וגם, במעבדה שלנו</span><h3>נתונים. סוכנים. תהליכים חדשים.</h3><p>אנחנו חוקרים תשתיות נתונים ואסטרטגיות בשווקי חיזוי במסגרת Polymarket / OFIR, ובונים תהליכי עבודה לצוות סוכני AI.</p><p className="research-tech">מחקר: Python · SQLite · ניתוח נתונים | צוות סוכנים: כלי AI וזרימות עבודה</p><small>פרויקטי חברות משלוחים — [לאשר: שם, תכולה וטכנולוגיות]. צוות הסוכנים — [לאשר: תכולה לפרסום].</small></div><span className="research-badge">IN PROGRESS ↗</span></div></div></section>
-<section id="capabilities" className="capabilities wrap section"><div className="section-top"><span className="eyebrow">03 / מה אנחנו עושים יחד</span><span className="small-en" dir="ltr">BUILT AROUND YOUR BUSINESS.</span></div><div className="cap-layout"><div className="cap-intro"><h2>מה העסק צריך?<br/><span className="purple-text">משם מתחילים.</span></h2><p>לפעמים זה מוצר חדש. לפעמים חיבור קטן שחוסך התעסקות גדולה. אנחנו בונים את המהלך שמתאים לאתגר.</p><a className="text-link" href="#contact">נמצא את החיבור שלכם <Arrow/></a><div className="cap-flower" aria-hidden="true">✳</div></div><div className="service-list">{services.map(s=><article key={s.n}><span className="service-number">{s.n}</span><div><h3><s.icon size={22} aria-hidden="true"/>{s.title}</h3><p>{s.text}</p></div><Arrow/></article>)}</div></div></section>
-<section className="process section"><div className="wrap"><div className="section-top"><span className="eyebrow">04 / הדרך שלנו</span><span className="small-en" dir="ltr">SMALL STEPS. REAL PROGRESS.</span></div><h2>מדברים פתוח.<br/>בונים <span>צעד־צעד.</span></h2><div className="steps">{[['01','מבינים את העסק','אנחנו מקשיבים, שואלים וממפים את הבעיה לפני שמחליטים מה לבנות.'],['02','מגדירים מהלך ראשון','אנחנו בוחרים יחד תכולה ממוקדת, סדרי עדיפויות ואיך נדע שזה עובד.'],['03','בונים, בודקים, מתקדמים','אנחנו מפתחים, מציגים ובודקים עם המשתמשים. לומדים ומשפרים תוך כדי תנועה.']].map(([n,t,d])=><article key={n}><span>{n}</span><h3>{t}</h3><p>{d}</p></article>)}</div></div></section>
-<section id="contact" className="contact wrap section"><div className="contact-top"><span className="eyebrow">05 / מכאן מתחילים</span><span className="contact-star" aria-hidden="true">✳</span></div><h2>יש משהו טוב<br/>שאפשר <span>להזיז יחד?</span></h2><div className="contact-bottom"><p>מוצר שצריך להיבנות? תהליך שנתקע?<br/>אנחנו כאן כדי לחשוב, לחבר ולעשות.</p><div className="contact-options"><button className="button dark" disabled><MessageCircle size={20}/> WhatsApp <Arrow/></button><button className="button outline" disabled><Mail size={20}/> אימייל <Arrow/></button><span className="contact-placeholder">[לאשר: טלפון/מייל] · פרטי הקשר יעודכנו בקרוב</span></div></div></section>
-</main><footer className="wrap"><a className="logo" href="#" dir="ltr">goo<span>✳</span></a><p>עמית פורת & יובל רפאל<br/><span>מחברים רעיונות למה שקורה באמת.</span></p><span className="copyright" dir="ltr">© {new Date().getFullYear()} GOO. LET’S MAKE GOOD THINGS.</span><a className="back-top" href="#">בחזרה למעלה ↑</a></footer></>}
+
+const contactPeaks: Peak[] = [
+  { x: 260, y: 520, h: 1, r: 330 },
+  { x: 900, y: 240, h: 0.6, r: 240 },
+];
+
+function Logo() {
+  return (
+    <span className="logo" dir="ltr">
+      goo
+      <i aria-hidden="true" />
+    </span>
+  );
+}
+
+export default function Home() {
+  const leads = ventures.filter((v) => v.lead);
+  const rest = ventures.filter((v) => !v.lead);
+  const hasContact = Boolean(contact.whatsapp || contact.email);
+
+  return (
+    <>
+      <a className="skip" href="#main">
+        דילוג לתוכן
+      </a>
+
+      <header className="site-header">
+        <div className="wrap header-row">
+          <a href="#top" aria-label="GOO, לראש העמוד">
+            <Logo />
+          </a>
+          <nav aria-label="ניווט ראשי">
+            <a href="#ventures">המיזמים</a>
+            <a href="#partners">ליווי עסקים</a>
+            <a href="#how">איך עובדים</a>
+            <a href="#team">מי אנחנו</a>
+          </nav>
+          <a className="btn btn-ink btn-small" href="#contact">
+            דברו איתנו
+          </a>
+        </div>
+      </header>
+
+      <main id="main">
+        <section className="hero" id="top">
+          <div className="hero-map">
+            <div className="map-inner">
+              <Contours peaks={heroPeaks} />
+              <ul className="peaks" aria-label="המיזמים שלנו">
+                {heroPeaks.map((p, n) => (
+                  <li
+                    key={p.label}
+                    style={{
+                      left: `${(p.x / 1200) * 100}%`,
+                      top: `${(p.y / 900) * 100}%`,
+                      animationDelay: `${1100 + n * 140}ms`,
+                    }}
+                  >
+                    <a href={p.href}>{p.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div className="wrap hero-copy">
+            <h1>
+              לוקחים עסקים
+              <br />
+              לגובה חדש.
+            </h1>
+            <p className="lede">
+              GOO בונה ומצמיחה עסקים. חלקם מיזמים שאנחנו יוזמים ומפתחים בעצמנו,
+              וחלקם עסקים קיימים שאנחנו מלווים מהמקום שבו הם נמצאים אל השלב הבא.
+            </p>
+            <div className="actions">
+              <a className="btn btn-cobalt" href="#contact">
+                דברו איתנו
+              </a>
+              <a className="btn btn-line" href="#ventures">
+                המיזמים שלנו
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="tracks wrap">
+          <h2>שתי דרכים לעלות.</h2>
+          <div className="tracks-grid">
+            <article>
+              <h3>מיזמים מהבית</h3>
+              <p>
+                אנחנו מזהים בעיה בשוק שאנחנו מכירים מבפנים, בונים לה מוצר
+                ומפעילים אותו כעסק לכל דבר. כך נולדו Medici בתיירות ורצף
+                בפיננסים.
+              </p>
+              <a href="#ventures">לכל המיזמים</a>
+            </article>
+            <article>
+              <h3>ליווי עסקים</h3>
+              <p>
+                אנחנו נכנסים לעסק קיים, לומדים איך הוא עובד באמת, ובונים יחד
+                איתו את מה שחסר כדי לגדול: מוצר, אוטומציה, שיווק ומכירות.
+              </p>
+              <a href="#partners">מה אנחנו מביאים</a>
+            </article>
+          </div>
+        </section>
+
+        <section className="ventures" id="ventures">
+          <div className="wrap">
+            <div className="section-head">
+              <h2>המיזמים שלנו</h2>
+              <p>
+                עסקים שיזמנו, בנינו ואנחנו מפעילים. כל אחד מהם התחיל מבעיה
+                שפגשנו בעצמנו.
+              </p>
+            </div>
+
+            <div className="leads">
+              {leads.map((v, n) => (
+                <article className="lead" id={v.id} key={v.id}>
+                  <Contours
+                    peaks={cardPeaks[n % cardPeaks.length]}
+                    levels={10}
+                    className="in-card"
+                  />
+                  <p className="field">{v.field}</p>
+                  <h3>{v.name}</h3>
+                  <p className="line">{v.line}</p>
+                  <p className="text">{v.text}</p>
+                  {v.status && <p className="status">{v.status}</p>}
+                </article>
+              ))}
+            </div>
+
+            <ul className="ventures-list">
+              {rest.map((v) => (
+                <li id={v.id} key={v.id}>
+                  <div className="v-name">
+                    <h3>{v.name}</h3>
+                    <p className="field">{v.field}</p>
+                  </div>
+                  <p className="line">{v.line}</p>
+                  <div className="v-text">
+                    <p className="text">{v.text}</p>
+                    {v.status && <p className="status">{v.status}</p>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="partners wrap" id="partners">
+          <div className="partners-intro">
+            <h2>
+              ליווי עסקים:
+              <br />
+              מה אנחנו מביאים.
+            </h2>
+            <p>
+              את מה שלמדנו בבניית המיזמים שלנו אנחנו מביאים לעסקים אחרים. נכנסים
+              כשותפים לדרך, עם ידיים על המקלדת ואחריות על התוצאה.
+            </p>
+          </div>
+          <dl className="caps">
+            {capabilities.map((c) => (
+              <div key={c.title}>
+                <dt>{c.title}</dt>
+                <dd>{c.text}</dd>
+              </div>
+            ))}
+          </dl>
+
+          {clients.length > 0 && (
+            <div className="clients">
+              <h3>עסקים שאנחנו מלווים</h3>
+              <ul>
+                {clients.map((c) => {
+                  const inner = c.logo ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={c.logo} alt={c.name} loading="lazy" />
+                  ) : (
+                    <span>{c.name}</span>
+                  );
+                  return (
+                    <li key={c.name}>
+                      {c.url ? <a href={c.url}>{inner}</a> : inner}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
+        </section>
+
+        <section className="how" id="how">
+          <div className="wrap">
+            <h2>איך עובדים איתנו</h2>
+            <ol>
+              {steps.map((s, n) => (
+                <li key={s.title}>
+                  <span className="step-n" aria-hidden="true">
+                    {n + 1}
+                  </span>
+                  <h3>{s.title}</h3>
+                  <p>{s.text}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        <section className="team wrap" id="team">
+          <h2>מי מאחורי GOO</h2>
+          <ul>
+            {founders.map((f) => (
+              <li key={f.name}>
+                <h3>{f.name}</h3>
+                <p className="role">{f.role}</p>
+                {f.text && <p>{f.text}</p>}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="contact" id="contact">
+          <Contours peaks={contactPeaks} levels={12} className="on-cobalt" />
+          <div className="wrap contact-inner">
+            <h2>
+              יש לכם עסק שמוכן
+              <br />
+              לשלב הבא?
+            </h2>
+            <p>
+              ספרו לנו איפה אתם היום ולאן אתם רוצים להגיע. נחזור אליכם עם צעד
+              ראשון.
+            </p>
+            {hasContact ? (
+              <div className="actions">
+                {contact.whatsapp && (
+                  <a
+                    className="btn btn-sun"
+                    href={`https://wa.me/${contact.whatsapp}`}
+                  >
+                    כתבו לנו ב-WhatsApp
+                  </a>
+                )}
+                {contact.email && (
+                  <a className="btn btn-white" href={`mailto:${contact.email}`}>
+                    שלחו מייל
+                  </a>
+                )}
+              </div>
+            ) : (
+              <p className="pending">פרטי ההתקשרות יתעדכנו כאן בקרוב.</p>
+            )}
+          </div>
+        </section>
+      </main>
+
+      <footer className="wrap site-footer">
+        <Logo />
+        <p>בונים ומצמיחים עסקים.</p>
+        <p className="copy">© 2026 GOO</p>
+      </footer>
+    </>
+  );
+}
