@@ -340,49 +340,65 @@ a:focus-visible {
   margin-top: 36px;
 }
 
-/* שתי דרכים */
+/* מחלקות */
 
-.tracks {
+.depts {
   padding-block: var(--gap);
 }
 
-.tracks-grid {
-  margin-top: 56px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-top: 2px solid var(--ink);
-}
-
-.tracks-grid article {
-  padding-block: 36px 8px;
-  padding-inline-end: 56px;
-}
-
-.tracks-grid article + article {
-  padding-inline: 56px 0;
-  border-inline-start: 1px solid var(--mist);
-}
-
-.tracks-grid h3 {
-  font-size: clamp(26px, 2.6vw, 34px);
-}
-
-.tracks-grid p {
-  margin-top: 16px;
-  max-width: 30em;
+.depts .section-head p {
   color: var(--ink-soft);
 }
 
-.tracks-grid a {
-  display: inline-block;
-  margin-top: 24px;
-  font-weight: 600;
-  color: var(--cobalt);
-  border-bottom: 1.5px solid currentColor;
+.depts-grid {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 2px solid var(--ink);
 }
 
-.tracks-grid a:hover {
-  color: var(--ink);
+.depts-grid li {
+  padding: 36px 40px 8px;
+  border-inline-start: 1px solid var(--mist);
+}
+
+.depts-grid li:first-child {
+  padding-inline-start: 0;
+  border-inline-start: 0;
+}
+
+.depts-grid li:last-child {
+  padding-inline-end: 0;
+}
+
+.depts-grid h3 {
+  font-size: clamp(34px, 3.8vw, 52px);
+  font-weight: 900;
+}
+
+.depts-grid p {
+  margin-top: 16px;
+  color: var(--ink-soft);
+}
+
+.modes {
+  margin-top: 36px;
+  display: grid;
+  gap: 28px;
+}
+
+.modes h3 {
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--cobalt);
+}
+
+.modes p {
+  margin-top: 6px;
+  max-width: 26em;
+  color: var(--ink-soft);
 }
 
 /* מיזמים */
@@ -615,8 +631,8 @@ a:focus-visible {
 .how ol {
   margin-top: 64px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
 }
 
 .how li {
@@ -787,7 +803,7 @@ a:focus-visible {
     mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 82%, transparent);
   }
 
-  .tracks-grid,
+  .depts-grid,
   .section-head,
   .leads,
   .partners,
@@ -796,13 +812,14 @@ a:focus-visible {
     grid-template-columns: 1fr;
   }
 
-  .tracks-grid article,
-  .tracks-grid article + article {
+  .depts-grid li,
+  .depts-grid li:first-child,
+  .depts-grid li:last-child {
     padding-inline: 0;
+    border-inline-start: 0;
   }
 
-  .tracks-grid article + article {
-    border-inline-start: 0;
+  .depts-grid li + li {
     border-top: 1px solid var(--mist);
     margin-top: 28px;
   }

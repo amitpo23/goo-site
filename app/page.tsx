@@ -3,6 +3,8 @@ import {
   capabilities,
   clients,
   contact,
+  departments,
+  teamModes,
   founders,
   steps,
   ventures,
@@ -66,7 +68,7 @@ export default function Home() {
           </a>
           <nav aria-label="ניווט ראשי">
             <a href="#ventures">המיזמים</a>
-            <a href="#partners">ליווי עסקים</a>
+            <a href="#departments">המחלקות</a>
             <a href="#how">איך עובדים</a>
             <a href="#team">מי אנחנו</a>
           </nav>
@@ -104,8 +106,9 @@ export default function Home() {
               לגובה חדש.
             </h1>
             <p className="lede">
-              GOO היא venture studio. אנחנו יזמים: יוזמים, בונים ומפעילים עסקים משלנו, ומביאים את
-              אותו ניסיון לעסקים קיימים שאנחנו מלווים אל השלב הבא.
+              GOO היא venture studio. אנחנו לוקחים מיזם או עסק ומובילים אותו
+              מההתחלה ועד הסוף: יוזמים, מפתחים ומפעילים, עם הצוות שכבר קיים או
+              עם צוות שאנחנו בונים.
             </p>
             <div className="actions">
               <a className="btn btn-cobalt" href="#contact">
@@ -118,27 +121,22 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="tracks wrap">
-          <h2>שתי דרכים לעלות.</h2>
-          <div className="tracks-grid">
-            <article>
-              <h3>מיזמים מהבית</h3>
-              <p>
-                אנחנו מזהים בעיה בשוק שאנחנו מכירים מבפנים, בונים לה מוצר
-                ומפעילים אותו כעסק לכל דבר. כך נולדו Medici בתיירות ורצף
-                בפיננסים.
-              </p>
-              <a href="#ventures">לכל המיזמים</a>
-            </article>
-            <article>
-              <h3>ליווי עסקים</h3>
-              <p>
-                אנחנו נכנסים לעסק קיים, לומדים איך הוא עובד באמת, ובונים יחד
-                איתו את מה שחסר כדי לגדול: מוצר, אוטומציה, שיווק ומכירות.
-              </p>
-              <a href="#partners">מה אנחנו מביאים</a>
-            </article>
+        <section className="depts wrap" id="departments">
+          <div className="section-head">
+            <h2>הכול בבית אחד.</h2>
+            <p>
+              כדי להוביל מיזם מקצה לקצה צריך יותר מקוד. לכן GOO בנויה ממחלקות
+              שעובדות יחד על אותו מיזם.
+            </p>
           </div>
+          <ul className="depts-grid">
+            {departments.map((d) => (
+              <li key={d.name}>
+                <h3>{d.name}</h3>
+                <p>{d.text}</p>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <section className="ventures" id="ventures">
@@ -186,17 +184,21 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="partners wrap" id="partners">
+        <section className="partners wrap" id="teams">
           <div className="partners-intro">
             <h2>
-              ליווי עסקים:
+              עם הצוות שלכם,
               <br />
-              מה אנחנו מביאים.
+              או עם צוות חדש.
             </h2>
-            <p>
-              את מה שלמדנו בבניית המיזמים שלנו אנחנו מביאים לעסקים אחרים. נכנסים
-              כשותפים לדרך, עם ידיים על המקלדת ואחריות על התוצאה.
-            </p>
+            <ul className="modes">
+              {teamModes.map((m) => (
+                <li key={m.title}>
+                  <h3>{m.title}</h3>
+                  <p>{m.text}</p>
+                </li>
+              ))}
+            </ul>
           </div>
           <dl className="caps">
             {capabilities.map((c) => (
@@ -209,7 +211,7 @@ export default function Home() {
 
           {clients.length > 0 && (
             <div className="clients">
-              <h3>עסקים שאנחנו מלווים</h3>
+              <h3>עובדים איתנו</h3>
               <ul>
                 {clients.map((c) => {
                   const inner = c.logo ? (
@@ -231,7 +233,7 @@ export default function Home() {
 
         <section className="how" id="how">
           <div className="wrap">
-            <h2>איך עובדים איתנו</h2>
+            <h2>מההתחלה ועד הסוף</h2>
             <ol>
               {steps.map((s, n) => (
                 <li key={s.title}>
@@ -263,14 +265,11 @@ export default function Home() {
           <Contours peaks={contactPeaks} levels={12} className="on-cobalt" />
           <div className="wrap contact-inner">
             <h2>
-              יש לכם עסק שמוכן
+              יש לכם עסק
               <br />
-              לשלב הבא?
+              או רעיון למיזם?
             </h2>
-            <p>
-              ספרו לנו איפה אתם היום ולאן אתם רוצים להגיע. נחזור אליכם עם צעד
-              ראשון.
-            </p>
+            <p>ספרו לנו מה אתם רוצים לבנות. נחזור אליכם עם הצעה איך לוקחים את זה מכאן ועד הסוף.</p>
             {hasContact ? (
               <div className="actions">
                 {contact.whatsapp && (
