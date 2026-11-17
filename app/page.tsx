@@ -1,35 +1,22 @@
-import Contours, { type Peak } from "../components/Contours";
-import { bring, clients, contact, entries, founders, steps, ventures } from '../content/site';
+import Contours, { type Peak } from '../components/Contours';
+import { audience, bring, clients, contact, method, pillars, steps } from '../content/site';
 
 // הפסגות במפה שבפתיח. x,y ביחידות של המפה (1200 על 900).
 const heroPeaks: (Peak & { label: string; href: string })[] = [
-  { x: 330, y: 340, h: 1, r: 240, label: "Medici", href: "#medici" },
-  { x: 640, y: 640, h: 0.8, r: 190, label: "רצף", href: "#rezef" },
-  { x: 330, y: 750, h: 0.5, r: 130, label: "מושקו", href: "#moshko" },
-  {
-    x: 700,
-    y: 170,
-    h: 0.45,
-    r: 150,
-    label: "Marketing OS",
-    href: "#marketing-os",
-  },
-];
-
-const cardPeaks: Peak[][] = [
-  [
-    { x: 250, y: 200, h: 1, r: 300 },
-    { x: 760, y: 420, h: 0.55, r: 220 },
-  ],
-  [
-    { x: 300, y: 260, h: 0.7, r: 240 },
-    { x: 620, y: 120, h: 1, r: 260 },
-  ],
+  { x: 330, y: 340, h: 1, r: 240, label: 'פיתוח עסקי', href: '#bizdev' },
+  { x: 640, y: 640, h: 0.8, r: 190, label: 'כספים', href: '#finance' },
+  { x: 430, y: 770, h: 0.5, r: 130, label: 'תפעול וצמיחה', href: '#ops' },
+  { x: 700, y: 170, h: 0.45, r: 150, label: 'טכנולוגיה ו-AI', href: '#tech' },
 ];
 
 const contactPeaks: Peak[] = [
   { x: 260, y: 520, h: 1, r: 330 },
   { x: 900, y: 240, h: 0.6, r: 240 },
+];
+
+const methodPeaks: Peak[] = [
+  { x: 980, y: 220, h: 1, r: 320 },
+  { x: 180, y: 760, h: 0.6, r: 240 },
 ];
 
 function Logo() {
@@ -42,8 +29,6 @@ function Logo() {
 }
 
 export default function Home() {
-  const leads = ventures.filter((v) => v.lead);
-  const rest = ventures.filter((v) => !v.lead);
   const hasContact = Boolean(contact.whatsapp || contact.email);
 
   return (
@@ -58,10 +43,11 @@ export default function Home() {
             <Logo />
           </a>
           <nav aria-label="ניווט ראשי">
-            <a href="#approach">הגישה</a>
-            <a href="#how">איך עובדים</a>
-            <a href="#ventures">המיזמים</a>
-            <a href="#team">מי אנחנו</a>
+            <a href="#approach">מי אנחנו</a>
+            <a href="#pillars">מה אנחנו עושים</a>
+            <a href="#how">איך זה עובד</a>
+            <a href="#method">שיטת GO</a>
+            <a href="#who">למי זה מתאים</a>
           </nav>
           <a className="btn btn-ink btn-small" href="#contact">
             דברו איתנו
@@ -74,7 +60,7 @@ export default function Home() {
           <div className="hero-map">
             <div className="map-inner">
               <Contours peaks={heroPeaks} />
-              <ul className="peaks" aria-label="המיזמים שלנו">
+              <ul className="peaks" aria-label="התחומים שלנו">
                 {heroPeaks.map((p, n) => (
                   <li
                     key={p.label}
@@ -97,29 +83,36 @@ export default function Home() {
               לגובה חדש.
             </h1>
             <p className="lede">
-              GOO היא חברת השבחה לעסקים קטנים. אנחנו נכנסים לעסקים בקשיים או עם פוטנציאל גדול, לצד
-              אנשים שאנחנו מאמינים בהם, ומובילים אותם יחד עם ההנהלה אל היעדים.
+              GOO היא חברת השבחה לעסקים קטנים ובינוניים. אנחנו נכנסים לעסק, מנתחים אותו לעומק, בונים
+              תוכנית ומובילים את הביצוע, עם פיתוח עסקי, כספים, טכנולוגיה ו-AI, עד שהעסק מגיע ליעדים
+              שלו.
             </p>
             <div className="actions">
               <a className="btn btn-cobalt" href="#contact">
-                דברו איתנו
+                בואו נדבר על העסק שלכם
               </a>
-              <a className="btn btn-line" href="#approach">
-                הגישה שלנו
+              <a className="btn btn-line" href="#method">
+                שיטת GO
               </a>
             </div>
           </div>
         </section>
 
         <section className="approach wrap" id="approach">
+          <p className="eyebrow">מי אנחנו</p>
           <h2>
-            לא יועצים מהצד.
+            חברת השבחה.
             <br />
-            מתחת לאלונקה.
+            בגודל של העסק שלכם.
           </h2>
           <p className="approach-lede">
-            אנחנו לא כותבים המלצות והולכים. אנחנו נכנסים לעסק, לוקחים אחריות יחד עם ההנהלה, ומייצרים
-            את התוצאות בעצמנו. בשביל זה אנחנו מביאים שלושה דברים.
+            בעולם ההשקעות יש חברות שכל תפקידן הוא לקחת חברה טובה, לחזק בה את הניהול, הכספים
+            והטכנולוגיה, ולהוביל אותה למקום אחר לגמרי. עד היום המודל הזה היה שמור לחברות גדולות.
+            GOO מביאה אותו לעסקים קטנים ובינוניים: אותה חשיבה, אותה משמעת ביצוע, בהתאמה מלאה לעסק
+            שלכם.
+          </p>
+          <p className="approach-lede">
+            אנחנו קבוצה של מומחים ואנשי מקצוע שיודעים לקחת רעיון או עסק, ולהביא אותו לגבהים חדשים.
           </p>
           <ul className="depts-grid">
             {bring.map((d) => (
@@ -131,21 +124,21 @@ export default function Home() {
           </ul>
         </section>
 
-        <section className="partners wrap" id="where">
+        <section className="partners wrap" id="pillars">
           <div className="partners-intro">
             <h2>
-              לאן אנחנו
+              מה אנחנו
               <br />
-              נכנסים.
+              מביאים לעסק.
             </h2>
             <p>
-              בעסקים של אחרים אנחנו נכנסים יחד עם הבעלים. את המיזמים שלנו אנחנו מקימים מאפס. התנאי
-              זהה בשני המקרים: אנשים שאנחנו מאמינים בהם.
+              ארבעה תחומים, צוות אחד ותוכנית אחת. התחומים מחוברים זה לזה, כי עסק לא משתנה בחלקים.
+              הוא משתנה כשהאסטרטגיה, המספרים, הכלים והביצוע מושכים לאותו כיוון.
             </p>
           </div>
           <dl className="caps">
-            {entries.map((c) => (
-              <div key={c.title}>
+            {pillars.map((c) => (
+              <div key={c.id} id={c.id}>
                 <dt>{c.title}</dt>
                 <dd>{c.text}</dd>
               </div>
@@ -173,10 +166,9 @@ export default function Home() {
         <section className="how" id="how">
           <div className="wrap">
             <div className="section-head">
-              <h2>הרבה צעדים קטנים.</h2>
+              <h2>איך זה עובד.</h2>
               <p>
-                מכאן השם. עסק לא משתנה במהלך אחד גדול. הוא משתנה כשיודעים לאן הולכים, ועושים כל
-                יום צעד חכם אחד בכיוון.
+                לא ייעוץ מהצד, אלא עבודה מבפנים. ארבעה שלבים, מהיום הראשון ועד שהיעד מושג.
               </p>
             </div>
             <ol>
@@ -193,59 +185,46 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="ventures" id="ventures">
-          <div className="wrap">
-            <div className="section-head">
-              <h2>מיזמים שיזמנו</h2>
-              <p>
-                עסקים שיזמנו, בנינו ואנחנו מפעילים. כל אחד מהם התחיל מבעיה
-                שפגשנו בעצמנו.
-              </p>
-            </div>
-
-            <div className="leads">
-              {leads.map((v, n) => (
-                <article className="lead" id={v.id} key={v.id}>
-                  <Contours
-                    peaks={cardPeaks[n % cardPeaks.length]}
-                    levels={10}
-                    className="in-card"
-                  />
-                  <p className="field">{v.field}</p>
-                  <h3>{v.name}</h3>
-                  <p className="line">{v.line}</p>
-                  <p className="text">{v.text}</p>
-                  {v.status && <p className="status">{v.status}</p>}
-                </article>
-              ))}
-            </div>
-
-            <ul className="ventures-list">
-              {rest.map((v) => (
-                <li id={v.id} key={v.id}>
-                  <div className="v-name">
-                    <h3>{v.name}</h3>
-                    <p className="field">{v.field}</p>
-                  </div>
-                  <p className="line">{v.line}</p>
-                  <div className="v-text">
-                    <p className="text">{v.text}</p>
-                    {v.status && <p className="status">{v.status}</p>}
-                  </div>
+        <section className="method" id="method">
+          <Contours peaks={methodPeaks} levels={12} className="on-night" />
+          <div className="wrap method-inner">
+            <p className="eyebrow">השיטה מאחורי השם</p>
+            <h2>
+              <span dir="ltr">GO.</span>
+              <br />
+              כל יום, מעשה.
+            </h2>
+            <p className="method-lede">
+              אנחנו מאמינים בחוק המעשים: עסק לא משתנה בזכות רעיון טוב, אלא בזכות מה שעושים איתו כל
+              יום. מציבים יעד, עושים פעולה, ומחר עוד אחת. כל יום צעד קטן לעבר המטרה.
+            </p>
+            <ol className="method-grid">
+              {method.map((m, n) => (
+                <li key={m.title}>
+                  <span className="method-n" aria-hidden="true">
+                    0{n + 1}
+                  </span>
+                  <h3>{m.title}</h3>
+                  <p>{m.text}</p>
                 </li>
               ))}
-            </ul>
+            </ol>
           </div>
         </section>
 
-        <section className="team wrap" id="team">
-          <h2>מי מאחורי GOO</h2>
+        <section className="team wrap" id="who">
+          <div>
+            <h2>למי זה מתאים</h2>
+            <p className="team-lede">
+              לבעלים של עסקים קטנים ובינוניים שרוצים יותר מעצה: שותף שנכנס לעבודה ומוביל איתם את
+              הצמיחה.
+            </p>
+          </div>
           <ul>
-            {founders.map((f) => (
-              <li key={f.name}>
-                <h3>{f.name}</h3>
-                <p className="role">{f.role}</p>
-                {f.text && <p>{f.text}</p>}
+            {audience.map((a) => (
+              <li key={a.title}>
+                <h3>{a.title}</h3>
+                <p>{a.text}</p>
               </li>
             ))}
           </ul>
@@ -259,14 +238,11 @@ export default function Home() {
               <br />
               להגיע גבוה יותר?
             </h2>
-            <p>ספרו לנו איפה העסק היום ולאן אתם רוצים להגיע. נחזור אליכם לשיחה ראשונה.</p>
+            <p>ספרו לנו איפה העסק היום ולאן אתם רוצים להגיע. הצעד הראשון הוא שיחה.</p>
             {hasContact ? (
               <div className="actions">
                 {contact.whatsapp && (
-                  <a
-                    className="btn btn-sun"
-                    href={`https://wa.me/${contact.whatsapp}`}
-                  >
+                  <a className="btn btn-sun" href={`https://wa.me/${contact.whatsapp}`}>
                     כתבו לנו ב-WhatsApp
                   </a>
                 )}

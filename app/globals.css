@@ -394,33 +394,10 @@ a:focus-visible {
   color: var(--ink-soft);
 }
 
-.modes {
-  margin-top: 36px;
-  display: grid;
-  gap: 28px;
-}
 
-.modes h3 {
-  font-family: var(--body);
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 1.4;
-  color: var(--cobalt);
-}
 
-.modes p {
-  margin-top: 6px;
-  max-width: 26em;
-  color: var(--ink-soft);
-}
 
-/* מיזמים */
 
-.ventures {
-  background: var(--night);
-  color: var(--white);
-  padding-block: var(--gap);
-}
 
 .section-head {
   display: grid;
@@ -431,123 +408,26 @@ a:focus-visible {
 
 .section-head p {
   max-width: 30em;
-  color: var(--night-soft);
+  color: var(--ink-soft);
 }
 
-.field {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--sun);
-}
 
-.status {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 3px 12px;
-  border: 1px solid var(--night-line);
-  border-radius: 999px;
-  font-size: 13px;
-  color: var(--night-soft);
-}
 
-.leads {
-  margin-top: 64px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
 
-.lead {
-  position: relative;
-  overflow: hidden;
-  padding: 44px 44px 48px;
-  border-radius: 28px;
-  background: var(--cobalt);
-  min-height: 420px;
-  display: flex;
-  flex-direction: column;
-}
 
-.lead + .lead {
-  background: var(--white);
-  color: var(--ink);
-}
 
-.lead + .lead .field {
-  color: var(--cobalt);
-}
 
-.lead .field {
-  color: var(--white);
-}
 
-.lead h3 {
-  margin-top: auto;
-  padding-top: 96px;
-  font-size: clamp(64px, 8vw, 112px);
-  font-weight: 900;
-  line-height: 0.9;
-  letter-spacing: -0.02em;
-}
 
-.lead .line {
-  margin-top: 20px;
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: clamp(22px, 2.2vw, 28px);
-  line-height: 1.25;
-}
 
-.lead .text {
-  margin-top: 12px;
-  max-width: 32em;
-  opacity: 0.86;
-}
 
-.lead .status {
-  align-self: flex-start;
-  border-color: currentColor;
-  color: inherit;
-  opacity: 0.75;
-}
 
-.ventures-list {
-  margin-top: 48px;
-}
 
-.ventures-list li {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr 1.5fr;
-  gap: 32px;
-  padding-block: 32px;
-  border-top: 1px solid var(--night-line);
-  align-items: start;
-}
 
-.ventures-list h3 {
-  font-size: clamp(30px, 3.2vw, 42px);
-}
 
-.ventures-list .field {
-  margin-top: 6px;
-}
 
-.ventures-list .line {
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 22px;
-  line-height: 1.3;
-  padding-top: 8px;
-}
 
-.ventures-list .text {
-  color: var(--night-soft);
-  padding-top: 8px;
-}
 
-.ventures-list .status {
-  margin-top: 14px;
-}
 
 /* ליווי עסקים */
 
@@ -705,18 +585,7 @@ a:focus-visible {
   font-size: 24px;
 }
 
-.team .role {
-  margin-top: 4px;
-  font-weight: 600;
-  font-size: 15px;
-  color: var(--cobalt);
-}
 
-.team li p:not(.role) {
-  margin-top: 10px;
-  font-size: 15px;
-  color: var(--ink-soft);
-}
 
 /* קשר */
 
@@ -734,15 +603,7 @@ a:focus-visible {
   opacity: 0.5;
 }
 
-.contours.in-card .contour {
-  stroke: currentColor;
-  animation: none;
-  opacity: 0.38;
-}
 
-.lead > :not(.contours) {
-  position: relative;
-}
 
 .contact-inner {
   position: relative;
@@ -792,6 +653,106 @@ a:focus-visible {
 
 /* מסכים צרים */
 
+/* כותרת עליונה קטנה */
+
+.eyebrow {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--cobalt);
+}
+
+.approach .eyebrow + h2 {
+  margin-top: 16px;
+}
+
+.approach-lede + .approach-lede {
+  margin-top: 20px;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* שיטת GO */
+
+.method {
+  position: relative;
+  overflow: hidden;
+  background: var(--night);
+  color: var(--white);
+  padding-block: var(--gap);
+}
+
+.contours.on-night .contour {
+  stroke: var(--night-soft);
+  animation: none;
+  opacity: 0.22;
+}
+
+.method-inner {
+  position: relative;
+}
+
+.method .eyebrow {
+  color: var(--sun);
+}
+
+.method h2 {
+  margin-top: 16px;
+  font-size: clamp(48px, 8vw, 120px);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.method-lede {
+  margin-top: 32px;
+  max-width: 34em;
+  font-size: clamp(18px, 1.6vw, 21px);
+  color: var(--night-soft);
+}
+
+.method-grid {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.method-grid li {
+  padding-top: 24px;
+  border-top: 2px solid var(--sun);
+}
+
+.method-n {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: 20px;
+  color: var(--sun);
+}
+
+.method-grid h3 {
+  margin-top: 8px;
+  font-size: clamp(24px, 2.4vw, 30px);
+  line-height: 1.2;
+}
+
+.method-grid p {
+  margin-top: 10px;
+  max-width: 24em;
+  color: var(--night-soft);
+}
+
+.team-lede {
+  margin-top: 16px;
+  max-width: 24em;
+  color: var(--ink-soft);
+}
+
+.team li p {
+  margin-top: 10px;
+  font-size: 16px;
+  color: var(--ink-soft);
+}
+
 @media (max-width: 900px) {
   .site-header nav {
     display: none;
@@ -818,10 +779,10 @@ a:focus-visible {
 
   .depts-grid,
   .section-head,
-  .leads,
   .partners,
   .team,
-  .how ol {
+  .how ol,
+  .method-grid {
     grid-template-columns: 1fr;
   }
 
@@ -841,19 +802,8 @@ a:focus-visible {
     gap: 16px;
   }
 
-  .lead {
-    padding: 28px 24px 32px;
-    min-height: 0;
-  }
 
-  .lead h3 {
-    padding-top: 64px;
-  }
 
-  .ventures-list li {
-    grid-template-columns: 1fr;
-    gap: 6px;
-  }
 
   .partners,
   .team {
