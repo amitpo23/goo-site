@@ -1,5 +1,5 @@
 import Contours, { type Peak } from '../components/Contours';
-import { audience, bring, clients, contact, method, pillars, steps } from '../content/site';
+import { audience, bring, clients, contact, method, pillars, projects, steps, ventures } from '../content/site';
 
 // הפסגות במפה שבפתיח. x,y ביחידות של המפה (1200 על 900).
 const heroPeaks: (Peak & { label: string; href: string })[] = [
@@ -7,6 +7,17 @@ const heroPeaks: (Peak & { label: string; href: string })[] = [
   { x: 640, y: 640, h: 0.8, r: 190, label: 'כספים', href: '#finance' },
   { x: 430, y: 770, h: 0.5, r: 130, label: 'תפעול וצמיחה', href: '#ops' },
   { x: 700, y: 170, h: 0.45, r: 150, label: 'טכנולוגיה ו-AI', href: '#tech' },
+];
+
+const cardPeaks: Peak[][] = [
+  [
+    { x: 250, y: 200, h: 1, r: 300 },
+    { x: 760, y: 420, h: 0.55, r: 220 },
+  ],
+  [
+    { x: 300, y: 260, h: 0.7, r: 240 },
+    { x: 620, y: 120, h: 1, r: 260 },
+  ],
 ];
 
 const contactPeaks: Peak[] = [
@@ -29,6 +40,8 @@ function Logo() {
 }
 
 export default function Home() {
+  const leads = ventures.filter((v) => v.lead);
+  const rest = ventures.filter((v) => !v.lead);
   const hasContact = Boolean(contact.whatsapp || contact.email);
 
   return (
@@ -45,9 +58,10 @@ export default function Home() {
           <nav aria-label="ניווט ראשי">
             <a href="#approach">מי אנחנו</a>
             <a href="#pillars">מה אנחנו עושים</a>
+            <a href="#ventures">מיזמים</a>
+            <a href="#projects">לקוחות</a>
             <a href="#how">איך זה עובד</a>
             <a href="#method">שיטת GO</a>
-            <a href="#who">למי זה מתאים</a>
           </nav>
           <a className="btn btn-ink btn-small" href="#contact">
             דברו איתנו
@@ -113,6 +127,8 @@ export default function Home() {
           </p>
           <p className="approach-lede">
             אנחנו קבוצה של מומחים ואנשי מקצוע שיודעים לקחת רעיון או עסק, ולהביא אותו לגבהים חדשים.
+            אנחנו מפעילים עסקים ושותפים בהם בתחומי המזון והמסעדנות, המשלוחים והלוגיסטיקה, הפיננסים,
+            התיירות והטכנולוגיה.
           </p>
           <ul className="depts-grid">
             {bring.map((d) => (
@@ -161,6 +177,73 @@ export default function Home() {
               </ul>
             </div>
           )}
+        </section>
+
+        <section className="ventures" id="ventures">
+          <div className="wrap">
+            <div className="section-head">
+              <h2>מיזמים ושותפויות</h2>
+              <p>
+                עסקים שאנחנו מנהלים, שותפים בהם או בונים בעצמנו. בכל אחד מהם אנחנו בפנים: בתפעול,
+                בכספים, בטכנולוגיה ובשיווק.
+              </p>
+            </div>
+
+            <div className="leads">
+              {leads.map((v, n) => (
+                <article className="lead" id={v.id} key={v.id}>
+                  <Contours
+                    peaks={cardPeaks[n % cardPeaks.length]}
+                    levels={10}
+                    className="in-card"
+                  />
+                  <p className="field">{v.field}</p>
+                  <h3>{v.name}</h3>
+                  <p className="line">{v.line}</p>
+                  <p className="text">{v.text}</p>
+                  {v.status && <p className="status">{v.status}</p>}
+                </article>
+              ))}
+            </div>
+
+            <ul className="ventures-list">
+              {rest.map((v) => (
+                <li id={v.id} key={v.id}>
+                  <div className="v-name">
+                    <h3>{v.name}</h3>
+                    <p className="field">{v.field}</p>
+                  </div>
+                  <p className="line">{v.line}</p>
+                  <div className="v-text">
+                    <p className="text">{v.text}</p>
+                    {v.status && <p className="status">{v.status}</p>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="projects wrap" id="projects">
+          <div className="section-head">
+            <div>
+              <h2>לקוחות ופרויקטים</h2>
+              <p className="note">חלק מרשימת הלקוחות והפרויקטים</p>
+            </div>
+            <p>
+              עסקים ופרויקטים שאנחנו עובדים בהם ואיתם, מתחומים שונים. המשותף לכולם: יעד ברור ועבודה
+              יומיומית כדי להגיע אליו.
+            </p>
+          </div>
+          <ul className="projects-grid">
+            {projects.map((p) => (
+              <li key={p.title}>
+                <p className="sector">{p.sector}</p>
+                <h3>{p.title}</h3>
+                <p>{p.text}</p>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <section className="how" id="how">
